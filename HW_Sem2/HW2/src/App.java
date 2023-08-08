@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 import Exceptions.*;
 
 public class App {
@@ -16,34 +17,31 @@ public class App {
             }
         }
     
+     
     
-    
-    
-        public static void main(String[] args)  {
+    public static void main(String[] args)  {
         //Task1.
-        Scanner sc=new Scanner(System.in);
-        int number=Integer.parseInt(sc.nextLine());
-        try{
-            invalidNumber(number);
-            System.out.println("Число корректно");
-        }catch(InvalidNumberException e){
-            
+           
+        try(Scanner sc=new Scanner(System.in)){
+            int number=Integer.parseInt(sc.nextLine());
+            try{
+                invalidNumber(number);
+                System.out.println("Число корректно");
+            }catch(InvalidNumberException e){
+            System.out.println("Ошибка: "+e.getMessage());
         }
-        sc.close();
+        }
         
         //Task2.
-        Scanner sc21=new Scanner(System.in);
-        int number1=Integer.parseInt(sc21.nextLine());
-        Scanner sc22=new Scanner(System.in);
-        int number2=Integer.parseInt(sc22.nextLine());
-        try{
-            divisionByZero (number2);
-            System.out.println(number1/number2);
-        }catch(DivisionByZeroException e){
-            
+        try(Scanner sc=new Scanner(System.in)){
+            int number1=Integer.parseInt(sc.nextLine());
+            int number2=Integer.parseInt(sc.nextLine());
+            try{
+                divisionByZero (number2);
+                System.out.println(number1/number2);
+            }catch(DivisionByZeroException e){
+            System.out.println("Ошибка: "+e.getMessage());
+            }
         }
-        sc21.close();
-        sc22.close();
-
     }
 }
